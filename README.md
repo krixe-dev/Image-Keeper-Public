@@ -3,7 +3,7 @@
 Projekt systemu do składowania i przetwarzania obrazków
 
 Architektura rozwiązania:
-![image](https://github.com/krixe-dev/Image-Keeper/blob/maven-update-structure/_img/diagram.png?raw=true)
+![image](https://github.com/krixe-dev/Image-Keeper-Public/blob/maven-update-structure/_img/diagram.png?raw=true)
 
 * gateway-service - serwis udostępniający API do systemu, na adres tej usługi kierowane są żądania CRUD. Serwis sprawdza uprawnienia i przekazuje żądania dalej do usługi manager-service
 * discovery-service - usługa discovery zapewniająca obsługę rozproszonego systemu i pozwalająca na wzajemne wykrywanie i rejestrowanie się mikroserwisów oraz jest odpowiedzialna za load-ballancing ruchu wewnątrz systemu miedzy serwisami
@@ -58,7 +58,7 @@ Aby uruchomić system należy posiadać:
 
 Aby pobrać kod, należy wykonać polecenia w konsoli
 ```bash
-git clone https://github.com/krixe-dev/Image-Keeper.git
+git clone https://github.com/krixe-dev/Image-Keeper-Public.git
 cd Image-Keeper
 ```
 
@@ -115,7 +115,7 @@ Opis jak dokonać uwierzytelnienia znajduje się w dołączonej instrukcji - [Ko
 usługa służy do wysłania nowego obrazka do systemu. 
 W elemencie Body żądania należy dodać nowy element form-data
 
-![image](https://github.com/krixe-dev/Image-Keeper/blob/maven-update-structure/_img/add_image_1.png?raw=true)
+![image](https://github.com/krixe-dev/Image-Keeper-Public/blob/maven-update-structure/_img/add_image_1.png?raw=true)
 
 1 - Wskazać konfigurację elementu Body, 2 - wybrać typ 'form-data', 3 - Wskazać, że podpinany będzie plik, 4 - wybrać plik z dysku
 
@@ -269,6 +269,7 @@ Metadane - określa, czy dane pochodzą z usługi storage-service i są dostępn
 <p>
 
 usługa służy do pobrania obrazka przez zalogowanego użytkwnika. Obrazek może pobrać TYLKO jego włąściciel i tylko gdy obrazek znajduje się w statusie PRESENT (czyli po jego przetworzeniu)
+
 Adres usugi: 
 <br/>
 ```bash
@@ -280,6 +281,7 @@ GET http://localhost:9000/images/339729e0-0690-4379-a08a-347289f50548/file
 <p>
 
 usługa służy do pobrania bezpiecznego linku do pobrania przez nieuwierzytelnionego użytkownika. W wyniku wywołania usługi zwrócony zostanie link ważny przez 2 minuty
+
 Adres usugi: 
 <br/>
 ```bash
@@ -296,6 +298,7 @@ UWAGA!! - link do pobrania wskazuje na usługę z nowego serwisu - download-serv
 <p>
 
 usługa służy do usunięcia obrazka z systemu. W wyniku wywołania usługi zwrócony zostanie status 204 - No content. Jest to potwierdzenie poprawnego wywołania usługi
+
 Adres usugi: 
 <br/>
 ```bash
@@ -309,6 +312,7 @@ UWAGA!! - Usunięcie obrazka powoduje jedynie zmianę jego statusu. Możliwe jes
 
 usługa służy do pobrania obrazka z systemu przez niezalogowanego użytkownika. 
 Link ważny jest 2 minuty od jego wygeneorwania.
+
 Adres usugi: 
 <br/>
 ```bash
@@ -370,6 +374,8 @@ Przykład prawidłowej odpowiedzi z usługi
 # Co dalej
 
 W projekcie należało by wykonać więcej usprawnień i mechanizmów, które będą wpływać na ergonomię rozwiązania.
+* dodanie ograniczenia na wielkość przesłanego pliku
+* dodanie sensownego mechanizmu wyznaczania metadanych obrazka (wymiary obrazka są losowe)
 * fitrowanie i stronicowanie dla usługi pobierania informacji o wszystkich obrazkach GET ALL IMAGES
 * grupowanie żądań o metadane wysyłanych z manager-service do storage-service
 * wykorzystanie Cache (Hazelcast) przy bazie danych w usługach manager-service
