@@ -1,0 +1,427 @@
+{
+	"info": {
+		"_postman_id": "90339b73-3aeb-48dc-b152-15afd377e205",
+		"name": "Image-Keeper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get ALL images",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "user2",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user2",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://keycloak:8080/auth/realms/demo/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:9000/",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "24e5cd05-6437-464c-aea4-24539a0f9902",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "demo-client",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/images",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET image",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "24e5cd05-6437-464c-aea4-24539a0f9902",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "demo-client",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8060/",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/images/c48a5303-f5d4-4ccd-9cc7-49a1557900b7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"images",
+						"c48a5303-f5d4-4ccd-9cc7-49a1557900b7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET image generate secure url",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "24e5cd05-6437-464c-aea4-24539a0f9902",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "demo-client",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8060/",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9000/images/c48a5303-f5d4-4ccd-9cc7-49a1557900b7/url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"images",
+						"c48a5303-f5d4-4ccd-9cc7-49a1557900b7",
+						"url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Image File",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "password",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user1",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "password_credentials",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/token",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "http://localhost:8080/auth/realms/demo/protocol/openid-connect/auth",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "24e5cd05-6437-464c-aea4-24539a0f9902",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "demo-client",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8060/",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/kchlebicki/Pictures/pobrane.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:9000/images",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"images"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update image data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\" : \"Image with title 11111\",\r\n    \"description\" : \"Image description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8090/images/ecf530d7-0d29-4e1b-bab8-32787c27ce1b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"images",
+						"ecf530d7-0d29-4e1b-bab8-32787c27ce1b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete image",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8090/images/55ecea34-e640-4bd6-b111-1cf50855dffb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"images",
+						"55ecea34-e640-4bd6-b111-1cf50855dffb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get image by secure url",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9010/download/UeFhjAltY5LBcVM5dv048CXNf6gaYihJevWJehLVc1JKVzajrtvnW0ahhEQsbSwV",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9010",
+					"path": [
+						"download",
+						"UeFhjAltY5LBcVM5dv048CXNf6gaYihJevWJehLVc1JKVzajrtvnW0ahhEQsbSwV"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

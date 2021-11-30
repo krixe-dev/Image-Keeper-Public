@@ -1,0 +1,191 @@
+# Docker Compose file
+version: '3.4'
+
+# Services
+services:
+
+  # RabbitMQ application #########################################################
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: 'rabbitmq'
+    hostname: rabbitmq
+
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./_rabbitmq-conf/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./_rabbitmq-conf/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
+
+    networks:
+      services-network-01:
+
+  # MongoDB Database ##########################################################
+  mongo-database:
+    image: mongo:4.4.3
+    restart: always
+    container_name: 'mongo-database'
+    hostname: mongo-database
+
+    networks:
+      - services-network-01
+
+    ports:
+      - 27017:27017
+
+  # PostgreSQL Database ##########################################################
+  postgres-database:
+    image: postgres:9.6-alpine
+    restart: always
+    container_name: postgres-database
+
+    ports:
+      # Forward the exposed port 5432
+      - 5432:5432
+
+    volumes:
+      - ./_sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./_sql/create_sequences.sql:/docker-entrypoint-initdb.d/create_sequences.sql
+      - ./_sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+
+    networks:
+      services-network-01:
+
+    # DB configuration
+    environment:
+      - POSTGRES_DB=demo_database
+      - POSTGRES_USER=demo_user
+      - POSTGRES_PASSWORD=demo_user
+
+  # Keycloak ##########################################################
+  keycloak:
+    image: jboss/keycloak:15.0.2
+#    restart: always
+    container_name: keycloak
+    hostname: keycloak
+
+    environment:
+      DB_VENDOR: h2
+      KEYCLOAK_USER: demo
+      KEYCLOAK_PASSWORD: demo
+      KEYCLOAK_IMPORT: /tmp/realm-export.json
+    volumes:
+      - ./_keycloak/realm-export.json:/tmp/realm-export.json
+    ports:
+      - 8080:8080
+
+    networks:
+      services-network-01:
+        aliases:
+          - keycloak
+
+  # Discovery service ############################################################
+  discovery-service:
+    build: ./discovery-service
+    container_name: 'discovery-service'
+    hostname: discovery-service
+
+    networks:
+      services-network-01:
+        aliases:
+          - discovery-service
+
+    ports:
+      - 8761:8761
+
+  # API Gateway service #########################################################
+  gateway-service:
+    build: ./gateway-service
+    restart: always
+    container_name: 'gateway-service'
+    # hostname: gateway-service
+
+    networks:
+      services-network-01:
+        aliases:
+          - gateway-service
+
+    ports:
+      - 9000:9000
+
+    depends_on:
+      - discovery-service
+      - keycloak
+
+  # Storage service #########################################################
+  storage-service:
+    build: ./storage-service
+    # Container name is commented in order to scale this service via docker
+    # container_name: 'storage-service'
+
+    environment:
+#      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka
+      - spring_rabbitmq_host=rabbitmq
+      - spring_rabbitmq_port=5672
+      - MONGO_SERVER=mongo-database
+      - MONGO_PORT=27017
+      - MONGO_DB=demo
+
+    networks:
+      - services-network-01
+
+    volumes:
+      # share folder on host machine in order to mock network file system (NFS)
+      - C:/tmp/images:/tmp/files
+
+    depends_on:
+      - discovery-service
+      - mongo-database
+      - rabbitmq
+
+  # Manager service #########################################################
+  manager-service:
+    build: ./manager-service
+    restart: always
+    # Container name is commented in order to scale this service via docker
+    # container_name: 'manager-service'
+
+    environment:
+#      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka
+      - DB_SERVER=postgres-database
+      - POSTGRES_DB=demo_database
+      - POSTGRES_USER=demo_user
+      - POSTGRES_PASSWORD=demo_user
+      - spring_rabbitmq_host=rabbitmq
+      - spring_rabbitmq_port=5672
+
+    networks:
+      - services-network-01
+
+    volumes:
+      # share folder on host machine in order to mock network file system (NFS)
+      - C:/tmp/images:/tmp/files
+
+    depends_on:
+      - discovery-service
+      - postgres-database
+      - rabbitmq
+      - keycloak
+
+  # Download service #########################################################
+  download-service:
+    build: ./download-service
+    container_name: 'download-service'
+
+    networks:
+      - services-network-01
+
+    ports:
+      - 9010:9010
+
+    volumes:
+      # share folder on host machine in order to mock network file system (NFS)
+      - C:/tmp/images:/tmp/files
+
+    depends_on:
+      - discovery-service
+
+networks:
+  services-network-01:
+    name: services-network-01
+    driver: bridge
