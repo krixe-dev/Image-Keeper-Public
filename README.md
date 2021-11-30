@@ -76,7 +76,8 @@ docker-compose up -d --scale manager-service=1 --scale manager-service=1
 Widok konsoli po wystartowaniu systemu:
 ```bash
 [+] Running 10/10
- - Network services-network-01               Created 
+ - Network services-network-01               Created
+ - Volume "nfs_data"                         Created 
  - Container discovery-service               Started 
  - Container postgres-database               Started
  - Container keycloak                        Started 
