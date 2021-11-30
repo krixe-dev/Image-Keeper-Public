@@ -3,7 +3,7 @@
 Projekt systemu do składowania i przetwarzania obrazków
 
 Architektura rozwiązania:
-![image](https://github.com/krixe-dev/Image-Keeper-Public/blob/maven-update-structure/_img/diagram.png?raw=true)
+![image](https://github.com/krixe-dev/Image-Keeper-Public/blob/master/_img/diagram.png?raw=true)
 
 * gateway-service - serwis udostępniający API do systemu, na adres tej usługi kierowane są żądania CRUD. Serwis sprawdza uprawnienia i przekazuje żądania dalej do usługi manager-service
 * discovery-service - usługa discovery zapewniająca obsługę rozproszonego systemu i pozwalająca na wzajemne wykrywanie i rejestrowanie się mikroserwisów oraz jest odpowiedzialna za load-ballancing ruchu wewnątrz systemu miedzy serwisami
@@ -115,7 +115,7 @@ Opis jak dokonać uwierzytelnienia znajduje się w dołączonej instrukcji - [Ko
 usługa służy do wysłania nowego obrazka do systemu. 
 W elemencie Body żądania należy dodać nowy element form-data
 
-![image](https://github.com/krixe-dev/Image-Keeper-Public/blob/maven-update-structure/_img/add_image_1.png?raw=true)
+![image](https://github.com/krixe-dev/Image-Keeper-Public/blob/master/_img/add_image_1.png?raw=true)
 
 1 - Wskazać konfigurację elementu Body, 2 - wybrać typ 'form-data', 3 - Wskazać, że podpinany będzie plik, 4 - wybrać plik z dysku
 
