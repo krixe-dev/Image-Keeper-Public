@@ -20,6 +20,7 @@ public class FeignClientExceptionHandler implements ErrorDecoder {
      */
     @Override
     public Exception decode(String s, Response response) {
+        // TODO dodac bardziej rozbudowana obsluge wyjatkow w komunikacji ze storage-service
         return new ManagerServiceException(INTERNAL_COMMUNICATION_EXCEPTION, "Error while communicating with STORAGE-SERVICE: " + response.status());
     }
 }

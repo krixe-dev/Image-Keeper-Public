@@ -374,10 +374,11 @@ Przykład prawidłowej odpowiedzi z usługi
 # Co dalej
 
 W projekcie należało by wykonać więcej usprawnień i mechanizmów, które będą wpływać na ergonomię rozwiązania.
-* dodanie ograniczenia na wielkość przesłanego pliku
-* dodanie sensownego mechanizmu wyznaczania metadanych obrazka (wymiary obrazka są losowe)
-* fitrowanie i stronicowanie dla usługi pobierania informacji o wszystkich obrazkach GET ALL IMAGES
-* grupowanie żądań o metadane wysyłanych z manager-service do storage-service
-* wykorzystanie Cache (Hazelcast) przy bazie danych w usługach manager-service
-* testy integracyjne
-* dokładna obsługa wyjątków w komunikacji pomiedzy manager-service i storage-service (w miejsce jednego zbiorczego typu błędu)
+* podpiąc serwer logów Zipkin
+* dodać ograniczenia na wielkość przesłanego pliku
+* dodać sensownego mechanizmu wyznaczania metadanych obrazka (wymiary obrazka są losowe)
+* dodać fitrowanie i stronicowanie dla usługi pobierania informacji o wszystkich obrazkach GET ALL IMAGES
+* dodać grupowanie żądań o metadane wysyłanych z manager-service do storage-service
+* wykorzystać Cache (Hazelcast) przy operacjach na bazie danych w usługach manager-service
+* dodać testy integracyjne
+* obsługiwać dokładniej wyjątki w komunikacji pomiedzy manager-service i storage-service (w miejsce jednego zbiorczego typu błędu)

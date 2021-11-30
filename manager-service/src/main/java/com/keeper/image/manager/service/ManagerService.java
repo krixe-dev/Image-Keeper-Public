@@ -85,6 +85,7 @@ public class ManagerService {
 
         logger.debug("imageDataList data size="+imageDataList.size());
 
+        // TODO zmienic na pojedyncze odpytanie z lista
         List<ImageDataDto> collectionOfImageDTOs = imageDataList.stream()
                 .map(i -> modelMapper.map(i, ImageDataDto.class))
                 .collect(Collectors.toList());
@@ -130,6 +131,8 @@ public class ManagerService {
         imageData.setStatus(ImageStatus.DELETED);
         imageData.setLastUpdateTime(new Date());
         logger.debug("Image status updated to="+ ImageStatus.DELETED);
+
+        // TODO dodac obsluge powiadomienia storage-service o usunieciu obrazka
 
         // save changes in DB
         imageDataReposotory.save(imageData);

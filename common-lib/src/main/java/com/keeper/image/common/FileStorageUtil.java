@@ -50,6 +50,8 @@ public class FileStorageUtil {
 
             return imageMetadataDto;
         } catch (Exception ex) {
+            // TODO obsluzyc wyjatek w dokladniejszy sposob
+            ex.printStackTrace();
             ImageMetadataDto imageMetadataDto = ImageMetadataDto.builder()
                     .imageUid(imageUid)
                     .fileName(originalFileName)

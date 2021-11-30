@@ -119,7 +119,6 @@ services:
     # container_name: 'storage-service'
 
     environment:
-#      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka
       - spring_rabbitmq_host=rabbitmq
       - spring_rabbitmq_port=5672
       - MONGO_SERVER=mongo-database
@@ -131,7 +130,7 @@ services:
 
     volumes:
       # share folder on host machine in order to mock network file system (NFS)
-      - C:/tmp/images:/tmp/files
+      - nfs_data:/tmp/files
 
     depends_on:
       - discovery-service
@@ -146,7 +145,6 @@ services:
     # container_name: 'manager-service'
 
     environment:
-#      - eureka.client.serviceUrl.defaultZone=http://discovery-service:8761/eureka
       - DB_SERVER=postgres-database
       - POSTGRES_DB=demo_database
       - POSTGRES_USER=demo_user
@@ -159,7 +157,7 @@ services:
 
     volumes:
       # share folder on host machine in order to mock network file system (NFS)
-      - C:/tmp/images:/tmp/files
+      - nfs_data:/tmp/files
 
     depends_on:
       - discovery-service
@@ -180,10 +178,14 @@ services:
 
     volumes:
       # share folder on host machine in order to mock network file system (NFS)
-      - C:/tmp/images:/tmp/files
+      - nfs_data:/tmp/files
 
     depends_on:
       - discovery-service
+
+volumes:
+  nfs_data:
+    external: true
 
 networks:
   services-network-01:
