@@ -105,7 +105,7 @@ Projekt Postman z gotowymi CRUD znajduje się w katalogu:
 _postman
 ```
 Wszystkie opisane tu usługi są już skonfigurowane w zakresie Uwierzytelnienia w projekcie Postman. 
-Opis jak dokonać uwierzytelnienia znajduje się w dołączonej instrukcji - [Konfiguracja uwierzytelnienia OAuth2 w Postman.docx](https://github.com/krixe-dev/Image-Keeper/blob/main/_postman/Image-Keeper.postman_collection.json)
+Opis jak dokonać uwierzytelnienia znajduje się w dołączonej instrukcji - [Konfiguracja uwierzytelnienia OAuth2 w Postman.docx](https://github.com/krixe-dev/Image-Keeper-Public/blob/master/_postman/Konfiguracja%20uwierzytelnienia%20OAuth2%20w%20Postman.docx)
 
 <b>Dostepne usługi API wraz z opisem:</b>
 
